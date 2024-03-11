@@ -5,20 +5,20 @@ import (
 	"net/http"
 )
 
-func handle(w http.ResponseWriter, request *http.Request) {
+func handle(write http.ResponseWriter, request *http.Request) {
 	data := []byte(`{"Method Not Allowed"}`)
 	if request.Method == "GET" {
 		data := []byte(`{"name : MarkTBSS", "method : GET"}`)
-		w.Write(data)
+		write.Write(data)
 		return
 	}
 	if request.Method == "POST" {
 		data = []byte(`{"name : MarkTBSS", "method : POST"}`)
-		w.Write(data)
+		write.Write(data)
 		return
 	}
-	w.WriteHeader(http.StatusMethodNotAllowed)
-	w.Write(data)
+	write.WriteHeader(http.StatusMethodNotAllowed)
+	write.Write(data)
 }
 
 func main() {
